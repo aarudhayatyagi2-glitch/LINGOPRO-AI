@@ -3,31 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LingoPro | Neural Excellence</title>
+    <title>LingoPro AI | Neural Bridge</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;800&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #d4af37; --bg: #050505; --card: #0a0a0a; }
+        :root { --gold: #d4af37; --genz: #ff3e81; --bg: #050505; --card: #0a0a0a; }
         * { margin: 0; padding: 0; box-sizing: border-box; transition: 0.4s; }
-        body { background: var(--bg); color: white; font-family: 'Plus Jakarta Sans', sans-serif; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
-        
-        .container { width: 90%; max-width: 850px; background: var(--card); padding: 80px 50px; border-radius: 4px; border: 1px solid #111; text-align: center; }
-        
-        h1 { font-size: 5.5rem; font-weight: 800; letter-spacing: -5px; background: linear-gradient(to bottom, #fff 40%, #333); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 5px; }
-        .sub { color: var(--gold); font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.1rem; letter-spacing: 3px; margin-bottom: 60px; }
-
-        .input-wrap { display: flex; align-items: center; border-bottom: 1px solid #222; max-width: 550px; margin: 0 auto 50px; padding: 10px 0; }
-        input { background: transparent; border: none; color: white; font-size: 1.6rem; font-weight: 200; outline: none; flex: 1; }
+        body { background: var(--bg); color: white; font-family: 'Plus Jakarta Sans', sans-serif; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .container { width: 90%; max-width: 850px; background: var(--card); padding: 60px 40px; border-radius: 4px; border: 1px solid #111; text-align: center; box-shadow: 0 0 100px rgba(0,0,0,1); }
+        h1 { font-size: 5.5rem; font-weight: 800; letter-spacing: -5px; background: linear-gradient(to bottom, #fff 40%, #333); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .sub { color: var(--gold); font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.1rem; letter-spacing: 3px; margin-bottom: 40px; }
+        .input-wrap { display: flex; align-items: center; border-bottom: 1px solid #222; max-width: 500px; margin: 0 auto 40px; padding: 10px 0; }
+        input { background: transparent; border: none; color: white; font-size: 1.5rem; outline: none; flex: 1; font-weight: 200; }
         .ebtn { background: transparent; color: var(--gold); border: 1px solid var(--gold); padding: 10px 25px; font-size: 0.7rem; font-weight: 800; cursor: pointer; letter-spacing: 2px; }
         .ebtn:hover { background: var(--gold); color: black; }
-
-        #panel { display: none; animation: slideUp 1s ease; margin-top: 50px; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        
-        .label { font-size: 0.6rem; font-weight: 800; color: #444; letter-spacing: 6px; margin-bottom: 15px; }
-        .word { font-size: 4rem; font-weight: 800; color: #fff; margin-bottom: 25px; }
-        .def { color: #888; max-width: 600px; margin: 0 auto 40px; line-height: 1.8; font-weight: 300; font-size: 1.1rem; }
-        .quote { background: #0c0c0c; padding: 45px; border: 1px solid #151515; color: white; font-family: 'Playfair Display', serif; font-size: 1.5rem; font-style: italic; line-height: 1.6; position: relative; }
-        .quote::after { content: "LingoPro Neural Output"; position: absolute; bottom: 10px; right: 20px; font-size: 0.5rem; font-family: 'Plus Jakarta Sans'; font-style: normal; color: #333; letter-spacing: 2px; }
+        #panel { display: none; animation: slideUp 0.8s ease; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } }
+        .label { font-size: 0.6rem; font-weight: 800; color: #444; letter-spacing: 5px; margin: 25px 0 10px; text-transform: uppercase; }
+        .word { font-size: 4rem; font-weight: 800; color: #fff; margin-bottom: 10px; }
+        .quote { background: #0c0c0c; padding: 35px; border-radius: 10px; color: white; font-family: 'Playfair Display', serif; font-size: 1.4rem; font-style: italic; margin-bottom: 30px; border-left: 4px solid var(--gold); line-height: 1.6; text-align: left; }
+        .genz-card { background: linear-gradient(135deg, #120015, #050505); border: 1px dashed var(--genz); padding: 30px; border-radius: 15px; text-align: left; position: relative; }
+        .genz-label { color: var(--genz); font-weight: 800; font-size: 0.7rem; letter-spacing: 2px; margin-bottom: 10px; display: block; }
+        .genz-text { font-size: 1.3rem; color: #eee; font-weight: 500; }
+        .slang-badge { position: absolute; top: -10px; right: 20px; background: var(--genz); color: white; font-size: 0.6rem; padding: 4px 10px; border-radius: 5px; font-weight: 900; }
     </style>
 </head>
 <body>
@@ -35,73 +32,62 @@
         <h1>LingoPro</h1>
         <p class="sub">Neural Intelligence Transformation</p>
         <div class="input-wrap">
-            <input type="text" id="inp" placeholder="Enter word..." autocomplete="off">
-            <button class="ebtn" onclick="run()">ELEVATE</button>
+            <input type="text" id="inp" placeholder="Try: cool, happy, pretty, bad, smart..." autocomplete="off">
+            <button class="ebtn" onclick="run()">TRANSFORM</button>
         </div>
         <div id="panel">
-            <div class="label">Status Transformation</div>
+            <div class="label">Sophisticated Alternative</div>
             <div class="word" id="w">---</div>
-            <div class="label">Essence</div>
-            <p class="def" id="d">---</p>
+            <div class="label">Professional Discourse</div>
             <div class="quote" id="q">---</div>
+            <div class="genz-card">
+                <span class="slang-badge">GEN-Z MODE</span>
+                <span class="genz-label">Slang Synthesis:</span>
+                <p class="genz-text" id="gz">---</p>
+            </div>
         </div>
     </div>
 
     <script>
-        const aiEngine = {
-            "last": { alt: "TERMINAL", def: "Forming or situated at the end of a series or process.", sent: "The terminal phase of the operation requires absolute concentration." },
-            "happy": { alt: "JUBILANT", def: "A state of high-status satisfaction and triumph.", sent: "A jubilant atmosphere filled the boardroom after the merger was signed." },
-            "sorry": { alt: "REMORSEFUL", def: "Reflecting a deep sense of strategic regret and awareness.", sent: "The remorseful apology paved the way for a new diplomatic era." },
-            "long": { alt: "ELONGATED", def: "Extended in duration for maximum precision and impact.", sent: "The elongated discussion ensured every technical flaw was addressed." }
+        const deepAI = {
+            "cool": { a: "EXEMPLARY", q: "His exemplary conduct in high-pressure situations set a benchmark for the entire executive board.", gz: "That's a total vibe, absolutely main character energy. ✨" },
+            "happy": { a: "JUBILANT", q: "A jubilant atmosphere permeated the workspace following the successful IPO launch.", gz: "I'm literally thriving right now, this is so valid. 🔥" },
+            "pretty": { a: "EXQUISITE", q: "The exquisite architectural nuances of the project reflect a commitment to superior quality.", gz: "No cap, the aesthetics are actually immaculate. 💅" },
+            "bad": { a: "DEPLORABLE", q: "The current systemic flaws are deplorable and demand immediate executive intervention.", gz: "That's a massive L, the vibes are highkey rancid. 💀" },
+            "smart": { a: "ASTUTE", q: "She made an astute observation regarding the fiscal volatility of the current market.", gz: "She's literally a girlboss, her brain is massive. 🧠" },
+            "great": { a: "ESTEEMED", q: "Our esteemed colleagues have finalized a framework that ensures long-term scalability.", gz: "This is iconic, for real for real. 💯" },
+            "sad": { a: "MELANCHOLY", q: "A sense of melancholy was evident as we concluded the final phase of the legacy project.", gz: "I'm in my feels today, it's a major mood. 🌧️" },
+            "fast": { a: "EXPEDITIOUS", q: "An expeditious response is required to mitigate the risks associated with this rollout.", gz: "We're moving at light speed, zoomer energy only. ⚡" },
+            "last": { a: "TERMINAL", q: "The terminal phase of the operation requires absolute precision and concentration.", gz: "It's the final era, no more second chances. 💀" },
+            "tell": { a: "ELUCIDATE", q: "Could you please elucidate the strategic roadmap for the upcoming quarter?", gz: "Spill the tea! I need the full receipts on this. ☕" }
         };
-
-        const randomTemplates = [
-            "We must prioritize a [W] approach to maintain executive standards.",
-            "The project's success hinges on our [W] execution.",
-            "Observers noted the [W] nature of the current market shift.",
-            "Transitioning to a [W] protocol will streamline our results."
-        ];
 
         async function run() {
             const val = document.getElementById('inp').value.toLowerCase().trim();
-            const btn = document.querySelector('.ebtn');
             if(!val) return;
-            btn.innerText = "THINKING";
+            document.getElementById('panel').style.display = 'block';
 
-            await new Promise(r => setTimeout(r, 700));
-
-            try {
-                const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${val}`);
-                const data = await res.json();
-                
-                let word, meaning, sentence;
-
-                if(aiEngine[val]) {
-                    word = aiEngine[val].alt;
-                    meaning = aiEngine[val].def;
-                    sentence = aiEngine[val].sent;
-                } else if(data[0]) {
-                    const syn = data[0].meanings[0].synonyms[0] || val;
-                    word = syn.toUpperCase();
-                    meaning = data[0].meanings[0].definitions[0].definition;
-                    // Dynamic Sentence Generation
-                    const t = randomTemplates[Math.floor(Math.random() * randomTemplates.length)];
-                    sentence = t.replace("[W]", syn.toLowerCase());
-                } else {
-                    word = val.toUpperCase() + " (ELITE)";
-                    meaning = "A specialized linguistic asset within the neural framework.";
-                    sentence = `The current discourse is significantly enhanced by the use of ${val}.`;
+            if(deepAI[val]) {
+                render(deepAI[val].a, deepAI[val].q, deepAI[val].gz);
+            } else {
+                try {
+                    const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${val}`);
+                    const data = await res.json();
+                    const syn = (data[0]?.meanings[0]?.synonyms[0]) ? data[0].meanings[0].synonyms[0] : val + "ic";
+                    
+                    render(syn.toUpperCase(), 
+                           `The professional integration of ${syn.toLowerCase()} concepts is paramount for our success.`, 
+                           `That ${val} is highkey giving... I'm literally obsessed. ✨`);
+                } catch(e) {
+                    render(val.toUpperCase(), "Verified elite status.", "It's a vibe, no cap. 🧢");
                 }
-
-                document.getElementById('w').innerText = word;
-                document.getElementById('d').innerText = meaning;
-                document.getElementById('q').innerText = `"${sentence}"`;
-                document.getElementById('panel').style.display = 'block';
-            } catch (e) {
-                console.log("Error");
-            } finally {
-                btn.innerText = "ELEVATE";
             }
+        }
+
+        function render(w, q, gz) {
+            document.getElementById('w').innerText = w;
+            document.getElementById('q').innerText = `"${q}"`;
+            document.getElementById('gz').innerText = gz;
         }
         document.getElementById('inp').addEventListener('keypress', (e) => { if(e.key === 'Enter') run(); });
     </script>
