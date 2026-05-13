@@ -3,134 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LingoPro AI | Transformation Engine</title>
+    <title>LingoPro | Neural Excellence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;800&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
     <style>
-        :root { --accent: #00f2fe; --bg: #020617; }
-        body { 
-            background: radial-gradient(circle at top right, #0f172a, #020617); 
-            color: white; font-family: 'Segoe UI', sans-serif; 
-            display: flex; align-items: center; justify-content: center; 
-            min-height: 100vh; margin: 0; overflow-x: hidden;
-        }
-        .container { 
-            text-align: center; width: 90%; max-width: 700px; padding: 50px; 
-            background: rgba(255,255,255,0.03); backdrop-filter: blur(25px); 
-            border-radius: 40px; border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-        }
-        h1 { font-size: 3.5rem; margin: 0; background: linear-gradient(to right, #fff, var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .tagline { color: #94a3b8; margin-bottom: 40px; font-weight: 300; letter-spacing: 1px; }
+        :root { --gold: #d4af37; --bg: #050505; --card: #0a0a0a; }
+        * { margin: 0; padding: 0; box-sizing: border-box; transition: 0.4s; }
+        body { background: var(--bg); color: white; font-family: 'Plus Jakarta Sans', sans-serif; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
         
-        .search-area { position: relative; display: flex; gap: 15px; margin-bottom: 25px; }
-        input { 
-            flex: 1; padding: 20px 30px; border-radius: 15px; border: none; 
-            background: rgba(255,255,255,0.07); color: white; font-size: 1.1rem;
-            border: 1px solid rgba(255,255,255,0.1); transition: 0.4s;
-        }
-        input:focus { border-color: var(--accent); outline: none; background: rgba(255,255,255,0.12); }
+        .container { width: 90%; max-width: 850px; background: var(--card); padding: 80px 50px; border-radius: 4px; border: 1px solid #111; text-align: center; }
         
-        .glow-btn { 
-            padding: 0 35px; border-radius: 15px; border: none; 
-            background: var(--accent); color: #000; font-weight: 800; 
-            cursor: pointer; transition: 0.3s; box-shadow: 0 0 20px rgba(0,242,254,0.4);
-        }
-        .glow-btn:hover { transform: translateY(-3px); box-shadow: 0 0 30px var(--accent); }
+        h1 { font-size: 5.5rem; font-weight: 800; letter-spacing: -5px; background: linear-gradient(to bottom, #fff 40%, #333); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 5px; }
+        .sub { color: var(--gold); font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.1rem; letter-spacing: 3px; margin-bottom: 60px; }
 
-        .suggestions { display: flex; justify-content: center; gap: 12px; margin-bottom: 30px; }
-        .chip { 
-            padding: 10px 20px; background: rgba(255,255,255,0.05); border-radius: 10px; 
-            font-size: 0.9rem; cursor: pointer; transition: 0.3s; border: 1px solid rgba(255,255,255,0.05);
-        }
-        .chip:hover { background: rgba(0,242,254,0.1); border-color: var(--accent); color: var(--accent); }
+        .input-wrap { display: flex; align-items: center; border-bottom: 1px solid #222; max-width: 550px; margin: 0 auto 50px; padding: 10px 0; }
+        input { background: transparent; border: none; color: white; font-size: 1.6rem; font-weight: 200; outline: none; flex: 1; }
+        .ebtn { background: transparent; color: var(--gold); border: 1px solid var(--gold); padding: 10px 25px; font-size: 0.7rem; font-weight: 800; cursor: pointer; letter-spacing: 2px; }
+        .ebtn:hover { background: var(--gold); color: black; }
 
-        #resultCard { 
-            margin-top: 30px; padding: 30px; border-radius: 20px; 
-            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(0,242,254,0.02));
-            border: 1px solid rgba(0,242,254,0.2); display: none; text-align: left;
-            animation: slideUp 0.5s ease;
-        }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        .res-label { color: var(--accent); font-size: 0.8rem; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; }
-        .res-word { font-size: 2.2rem; margin: 10px 0; font-weight: 700; color: #fff; }
-        .res-usage { color: #cbd5e1; font-style: italic; border-left: 3px solid var(--accent); padding-left: 15px; margin-top: 15px; }
+        #panel { display: none; animation: slideUp 1s ease; margin-top: 50px; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .label { font-size: 0.6rem; font-weight: 800; color: #444; letter-spacing: 6px; margin-bottom: 15px; }
+        .word { font-size: 4rem; font-weight: 800; color: #fff; margin-bottom: 25px; }
+        .def { color: #888; max-width: 600px; margin: 0 auto 40px; line-height: 1.8; font-weight: 300; font-size: 1.1rem; }
+        .quote { background: #0c0c0c; padding: 45px; border: 1px solid #151515; color: white; font-family: 'Playfair Display', serif; font-size: 1.5rem; font-style: italic; line-height: 1.6; position: relative; }
+        .quote::after { content: "LingoPro Neural Output"; position: absolute; bottom: 10px; right: 20px; font-size: 0.5rem; font-family: 'Plus Jakarta Sans'; font-style: normal; color: #333; letter-spacing: 2px; }
     </style>
 </head>
 <body>
-
     <div class="container">
         <h1>LingoPro</h1>
-        <p class="tagline">Elevating mundane vocabulary into high-status linguistics.</p>
-
-        <div class="search-area">
-            <input type="text" id="userInput" placeholder="Type a mundane word (e.g. Happy, Small)...">
-            <button class="glow-btn" onclick="aiTransform()">TRANSFORM</button>
+        <p class="sub">Neural Intelligence Transformation</p>
+        <div class="input-wrap">
+            <input type="text" id="inp" placeholder="Enter word..." autocomplete="off">
+            <button class="ebtn" onclick="run()">ELEVATE</button>
         </div>
-
-        <div class="suggestions">
-            <div class="chip" onclick="fillAndGo('Happy')">Happy</div>
-            <div class="chip" onclick="fillAndGo('Smart')">Smart</div>
-            <div class="chip" onclick="fillAndGo('Pretty')">Pretty</div>
-            <div class="chip" onclick="fillAndGo('Hard')">Hard</div>
-        </div>
-
-        <div id="resultCard">
-            <div class="res-label">Status Transformation</div>
-            <div class="res-word" id="transformedWord">---</div>
-            <div class="res-label" style="margin-top: 20px;">Contextual Usage</div>
-            <div class="res-usage" id="usageSentence">---</div>
+        <div id="panel">
+            <div class="label">Status Transformation</div>
+            <div class="word" id="w">---</div>
+            <div class="label">Essence</div>
+            <p class="def" id="d">---</p>
+            <div class="quote" id="q">---</div>
         </div>
     </div>
 
     <script>
-        // AI Mapping Database (Ensures results every time)
-        const aiDatabase = {
-            "happy": { word: "JUBILANT", sentence: "The board was jubilant after the record-breaking quarterly results." },
-            "pretty": { word: "EXQUISITE", sentence: "The architectural design of the new library is truly exquisite." },
-            "smart": { word: "ASTUTE", sentence: "She made an astute observation regarding the market trends." },
-            "hard": { word: "FORMIDABLE", sentence: "The team faced a formidable challenge during the final phase." },
-            "small": { word: "DIMINUTIVE", sentence: "The device is diminutive in size but powerful in performance." },
-            "bad": { word: "DEPLORABLE", sentence: "The conditions of the old laboratory were absolutely deplorable." },
-            "good": { word: "EXEMPLARY", sentence: "His exemplary conduct earned him the 'Student of the Year' award." },
-            "call": { word: "CONVENE", sentence: "We need to convene a meeting to discuss the project milestones." }
+        const aiEngine = {
+            "last": { alt: "TERMINAL", def: "Forming or situated at the end of a series or process.", sent: "The terminal phase of the operation requires absolute concentration." },
+            "happy": { alt: "JUBILANT", def: "A state of high-status satisfaction and triumph.", sent: "A jubilant atmosphere filled the boardroom after the merger was signed." },
+            "sorry": { alt: "REMORSEFUL", def: "Reflecting a deep sense of strategic regret and awareness.", sent: "The remorseful apology paved the way for a new diplomatic era." },
+            "long": { alt: "ELONGATED", def: "Extended in duration for maximum precision and impact.", sent: "The elongated discussion ensured every technical flaw was addressed." }
         };
 
-        function aiTransform() {
-            const input = document.getElementById('userInput').value.toLowerCase().trim();
-            const card = document.getElementById('resultCard');
-            
-            if(!input) return;
+        const randomTemplates = [
+            "We must prioritize a [W] approach to maintain executive standards.",
+            "The project's success hinges on our [W] execution.",
+            "Observers noted the [W] nature of the current market shift.",
+            "Transitioning to a [W] protocol will streamline our results."
+        ];
 
-            // Simple Logic: Check DB first, else fetch API
-            if(aiDatabase[input]) {
-                showResult(aiDatabase[input].word, aiDatabase[input].sentence);
-            } else {
-                // Fallback to API if not in our "AI" list
-                fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${input}`)
-                .then(res => res.json())
-                .then(data => {
-                    const syn = data[0]?.meanings[0]?.synonyms[0];
-                    if(syn) {
-                        showResult(syn.toUpperCase(), `The context requires a more ${syn} approach to maintain professional standards.`);
-                    } else {
-                        showResult(input.toUpperCase() + " (ELITE)", "This term is already at its peak linguistic status.");
-                    }
-                }).catch(() => {
-                    showResult("SOPHISTICATED", "Logic error: Unable to connect to the linguistic neural network.");
-                });
+        async function run() {
+            const val = document.getElementById('inp').value.toLowerCase().trim();
+            const btn = document.querySelector('.ebtn');
+            if(!val) return;
+            btn.innerText = "THINKING";
+
+            await new Promise(r => setTimeout(r, 700));
+
+            try {
+                const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${val}`);
+                const data = await res.json();
+                
+                let word, meaning, sentence;
+
+                if(aiEngine[val]) {
+                    word = aiEngine[val].alt;
+                    meaning = aiEngine[val].def;
+                    sentence = aiEngine[val].sent;
+                } else if(data[0]) {
+                    const syn = data[0].meanings[0].synonyms[0] || val;
+                    word = syn.toUpperCase();
+                    meaning = data[0].meanings[0].definitions[0].definition;
+                    // Dynamic Sentence Generation
+                    const t = randomTemplates[Math.floor(Math.random() * randomTemplates.length)];
+                    sentence = t.replace("[W]", syn.toLowerCase());
+                } else {
+                    word = val.toUpperCase() + " (ELITE)";
+                    meaning = "A specialized linguistic asset within the neural framework.";
+                    sentence = `The current discourse is significantly enhanced by the use of ${val}.`;
+                }
+
+                document.getElementById('w').innerText = word;
+                document.getElementById('d').innerText = meaning;
+                document.getElementById('q').innerText = `"${sentence}"`;
+                document.getElementById('panel').style.display = 'block';
+            } catch (e) {
+                console.log("Error");
+            } finally {
+                btn.innerText = "ELEVATE";
             }
         }
-
-        function showResult(word, sentence) {
-            document.getElementById('transformedWord').innerText = word;
-            document.getElementById('usageSentence').innerText = `"${sentence}"`;
-            document.getElementById('resultCard').style.display = 'block';
-        }
-
-        function fillAndGo(val) {
-            document.getElementById('userInput').value = val;
-            aiTransform();
-        }
+        document.getElementById('inp').addEventListener('keypress', (e) => { if(e.key === 'Enter') run(); });
     </script>
 </body>
 </html>
